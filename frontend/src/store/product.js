@@ -5,7 +5,7 @@ export const useProductStore = create((set) => ({
     setProducts: (products) => set({ products }),
     createProduct: async (newProduct) => {
         if (!newProduct.name || !newProduct.price || !newProduct.image) {
-            return { success: false, message: "Please fill in all fields." };
+            return { success: false, message: "Please fill in all fields" };
         }
         const res = await fetch("/api/products", {
             method: "POST",
@@ -16,12 +16,23 @@ export const useProductStore = create((set) => ({
         });
         const data = await res.json();
         set((state) => ({ products: [...state.products, data.data] }));
-        return { success: true, message: "Product created successfully." };
+        return { success: true, message: "Product created successfully" };
     },
     fetchProducts: async () => {
         // send a request to the products endpoint and grab those products
         const res = await fetch("/api/products");
         const data = await res.json();
         set({ products: data.data });
+    },
+    deleteProduct: async (pid) => {
+        const res = await fetch(`/api/products/${pid}`, {
+            method: "DELETE",
+        });
+        const data = await res.json();
+        if (!data.success) return { success: false, message: data.message };
+
+        // update the user interface immediately without having to refresh
+        set(state => ({ products: state.products.filter(product => product._id !== pid) }));
+        return { success: true, message: data.message };
     }
 }));
