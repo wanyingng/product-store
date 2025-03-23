@@ -129,7 +129,7 @@ const ProductCard = ({product}) => {
                 </ModalContent>
             </Modal>
         </Box>
-  );
+    );
 };
 
 export default ProductCard;
