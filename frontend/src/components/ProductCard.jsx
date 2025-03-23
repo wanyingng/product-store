@@ -71,20 +71,20 @@ const ProductCard = ({product}) => {
             <Box p={4}>
                 <Heading as="h3" size="md" mb={2}>
                     {product.name}
-				</Heading>
+                </Heading>
 
-				<Text fontWeight="bold" fontSize="xl" color={textColor} mb={4}>
+                <Text fontWeight="bold" fontSize="xl" color={textColor} mb={4}>
                     ${product.price}
-				</Text>
+                </Text>
 
 				<HStack spacing={2}>
-					<IconButton icon={<EditIcon />} onClick={onOpen} colorScheme="blue" />
-					<IconButton
-						icon={<DeleteIcon />}
+                    <IconButton icon={<EditIcon />} onClick={onOpen} colorScheme="blue" />
+                    <IconButton
+                        icon={<DeleteIcon />}
                         onClick={() => handleDeleteProduct(product._id)}
-						colorScheme="red"
-					/>
-				</HStack>
+                        colorScheme="red"
+                    />
+                </HStack>
             </Box>
             <Modal isOpen={isOpen} onClose={onClose}>
                 <ModalOverlay />
@@ -93,38 +93,38 @@ const ProductCard = ({product}) => {
                     <ModalCloseButton />
                     <ModalBody>
                         <VStack spacing={4}>
-							<Input
-								placeholder="Product Name"
-								name="name"
-								value={updatedProduct.name}
-								onChange={(e) => setUpdatedProduct({ ...updatedProduct, name: e.target.value })}
-							/>
-							<Input
-								placeholder="Price"
-								name="price"
-								type="number"
-								value={updatedProduct.price}
-								onChange={(e) => setUpdatedProduct({ ...updatedProduct, price: e.target.value })}
-							/>
-							<Input
-								placeholder="Image URL"
-								name="image"
-								value={updatedProduct.image}
-								onChange={(e) => setUpdatedProduct({ ...updatedProduct, image: e.target.value })}
-							/>
-						</VStack>
+                            <Input
+                                placeholder="Product Name"
+                                name="name"
+                                value={updatedProduct.name}
+                                onChange={(e) => setUpdatedProduct({ ...updatedProduct, name: e.target.value })}
+                            />
+                            <Input
+                                placeholder="Price"
+                                name="price"
+                                type="number"
+                                value={updatedProduct.price}
+                                onChange={(e) => setUpdatedProduct({ ...updatedProduct, price: e.target.value })}
+                            />
+                            <Input
+                                placeholder="Image URL"
+                                name="image"
+                                value={updatedProduct.image}
+                                onChange={(e) => setUpdatedProduct({ ...updatedProduct, image: e.target.value })}
+                            />
+                        </VStack>
                     </ModalBody>
                     <ModalFooter>
                         <Button
-							colorScheme="pink"
-							mr={3}
+                            colorScheme="pink"
+                            mr={3}
                             onClick={() => handleUpdateProduct(product._id, updatedProduct)}
-						>
+                        >
                             Update
-						</Button>
-						<Button variant="ghost" onClick={onClose}>
-							Cancel
-						</Button>
+                        </Button>
+                        <Button variant="ghost" onClick={onClose}>
+                            Cancel
+                        </Button>
                     </ModalFooter>
                 </ModalContent>
             </Modal>
